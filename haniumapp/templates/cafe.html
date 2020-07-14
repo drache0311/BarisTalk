@@ -1,0 +1,34 @@
+{% load static %} <!-- 1-1 static으로설정한 것들불러와라 -->
+<head>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" int$
+crossorigin="anonymous">
+ <link rel="stylesheet" href="{% static 'css/cover.css' %}">  <!-- 1-2 불러온것중에서 cover.css를쓰겠다 -->
+</head>
+<body class="text-center"> <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">바리스톡</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link" href=" " >Home</a>
+        <a class="nav-link active" href="../chat">채팅</a>
+        <a class="nav-link" href="#">카테고리</a>
+        <a class="nav-link" href="#">심리</a>
+      </nav>
+    </div>
+  </header>
+  <main role="main" class="inner cover">
+    <h1 class="cover-heading">커피를 먹고싶은 당신을 위한 서비스</h1>
+    <p class="lead">바리스톡
+    <p class="lead">
+      <a href="chat" class="btn btn-lg btn-secondary">채팅시작</a>
+    </p>
+  </main>
+  <footer class="mastfoot mt-auto">
+  <!-- 푸터 아직 안쓰니깐 주석
+    <div class="inner">
+      <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.$
+    </div>
+  -->
+  </footer> </div>
+<body>
+
