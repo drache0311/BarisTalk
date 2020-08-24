@@ -23,4 +23,5 @@ urlpatterns = [
         # 맨앞' '은 주소 뒤 아무것도 입력안했을시를 의미
         # 중간views.index는 views.py의 index함수의미
     path('chat/', haniumapp.views.chat, name='chat'),
+    path('webhook/', haniumapp.views.webhook, name='webhook'),
 ]
