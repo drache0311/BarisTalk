@@ -32,7 +32,7 @@ print('파일열기끝')
 #-------------------------------- 정수인코딩 시작
 tokenizer.fit_on_texts(X_train)
 
-"""
+
 threshold = 3
 total_cnt = len(tokenizer.word_index) # 단어의 수
 rare_cnt = 0 # 등장 빈도수가 threshold보다 작은 단어의 개수를 카운트
@@ -52,7 +52,9 @@ for key, value in tokenizer.word_counts.items():
 vocab_size = total_cnt - rare_cnt + 2
 tokenizer = Tokenizer(vocab_size, oov_token = 'OOV') 
 tokenizer.fit_on_texts(X_train)
-"""
+
+
+
 X_train = tokenizer.texts_to_sequences(X_train)
 
 
@@ -85,7 +87,6 @@ def sentiment_predict(new_sentence):
   else:
     print("{:.2f}% 확률로 부정 리뷰입니다.\n".format((1 - score) * 100))
     return ((1-score)*100),0
-
 
 
 #sentiment_predict('재밌기도하고 슬프기도하지만 더 슬프네요 감동입니다')

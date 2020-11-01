@@ -14,8 +14,6 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 ######데이터자료 시작
 
 # 자료 가져오기  https://github.com/e9t/nsmc/   나중에는 직접 웹 크롤링으로 댓글을 가져와서 할 수 있었으면 좋겠다 !
-#train_df = pd.DataFrame(pd.read_csv('https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt', sep =  '\t', quoting = 3))
-#train_df = train_df.replace(np.nan, '', regex=True) 
 train_df = pd.DataFrame(pd.read_csv('https://raw.githubusercontent.com/e9t/nsmc/master/ratings_test.txt', sep =   '\t', quoting = 3))
 train_df = train_df.replace(np.nan, '', regex=True)  #regex 정규표현식 설정 
 

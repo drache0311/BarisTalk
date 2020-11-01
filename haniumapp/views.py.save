@@ -12,7 +12,7 @@ from . import nlp
 
 #score = 0	# 긍정부정 점수를 담는 변수
 #flag = 0	# 긍정이면 1, 부정이면 0
-sum = 0		# 최종값 점수를 담는 변수
+sum = 		# 최종값 점수를 담는 변수
 
 
 # Create your views here.
@@ -65,47 +65,15 @@ def start(queryText):
     global sum
     #score는몇%인지 , flag는1이면 긍정,0이면 부정
     score,flag =  nlp.sentiment_predict(queryText)
-
+    
     # 채탱끝 이라고 오면 채팅종료
     # sum 값을 0으로 초기화 하고 채팅종료 response를 보낸다.
     if(queryText == '채팅끝'):
-
-        # 점수(sum)가 -40이하
-        if(sum<-40):
-            response = {
-                'fulfillmentText' : '당신은 매우 힘드시군요! \n 그럴떈 차가운 아메리카노는 어떠신가요?'
-            }
-            sum = 0
-            return JsonResponse(response, safe=False)
-        # 점수(sum)가 -20이하~ -40
-        elif(sum<-20):
-            response = {
-                'fulfillmentText' : '기분이 별로인가요?! \n 기분전환으로 카페모카는 어떠신가요?'
-            }
-            sum = 0
-            return JsonResponse(response, safe=False)
-        # 점수(sum)가 0이하 ~ -20
-        elif(sum<0):
-            response = {
-                'fulfillmentText' : '평범한 일상인가요?! \n 콜드브류를 더해보세요!'
-            }
-            sum = 0
-            return JsonResponse(response, safe=False)
-        # 점수(sum)가 20이하 ~ 0
-        elif(sum<20):
-            response = {
-                'fulfillmentText' : '좋은일이 있으시나요?! \n 바닐라라뗴로 더욱 즐겨보세요!'
-            }
-            sum = 0
-            return JsonResponse(response, safe=False)
-        # 점수(sum)가 20이상
-        else:
-            response = {
-                'fulfillmentText' : '최고의 날이네요! \n 아이스 아메리카노로 식혀보세요'
-            }
-            sum = 0
-            return JsonResponse(response, safe=False)
-
+        response = {
+            'fulfillmentText' : '당신의 점수는 '+sum+'입니다'
+        }
+        sum = 0
+        return JsonResponse(response, safe=False)
 
     # 채팅끝이 아니면 분석시작
     else:
@@ -124,3 +92,43 @@ def start(queryText):
 
 
 
+def chatting(queryText):
+
+    if(queryText == '채팅끝'):
+        response = {
+            'fulfillmentText' : '채팅종료합니다',
+            "followupEventInput": {
+                "name": "stop",
+                "languageCode": "ko"
+            }
+        }
+        return JsonResponse(response, safe=False)
+    elif(queryText is not None):
+#        score,flag =  nlp.sentiment_predict(queryText)
+        response = {
+            'fulfillmentText' : '측정을 시작합니다.'
+        }
+
+#        return JsonResponse(response, safe=False)
+
+        return check(queryText)
+
+
+
+def stop(params):
+
+    response = {
+        'fulfillmentText' : '채팅을 종료하겠습니다'
+
+    }
+
+    return JsonResponse(response, safe=False)
+
+
+def check(queryText):
+
+    score,flag =  nlp.sentiment_predict(queryText)
+    response = {
+        'fulfillmentText' : '계속 입력해 주세요'
+    }
+    return JsonResponse(response, safe=False)
